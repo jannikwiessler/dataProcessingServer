@@ -14,6 +14,14 @@ from test_data import test_data
 from trip_processor import TripProcessor
 
 
+class DataNotInValidFormatError(Exception):
+    """Raised when given data is not in valid format"""
+
+    def __init__(self):
+        self.message = "data given is not of valid format"
+        super().__init__(self.message)
+
+
 class TripDataProcessorTest(unittest.TestCase):
     # pylint: disable=no-self-use
     """Class containing specific unit tests for
