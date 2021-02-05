@@ -1,0 +1,24 @@
+name: on_checkin_tasks
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pylint requests swagger_parser geopy cherrypy parameterized
+    - name: Run unit tests
+      run: python trip_processor_unittest.py
+    - name: Analysing the code with pylint 
+      run: pylint `ls -R|grep .py$|xargs`
+      continue-on-error: true
+    - name: Build the Docker image
+      run: docker build . --file dockerfile --tag mbc_programming_challenge:$(date +%s)
