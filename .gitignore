@@ -1,2 +1,4 @@
 __pycache__/
 .vscode/
+trip_processor_unittest.py
+inputdata_format.yml

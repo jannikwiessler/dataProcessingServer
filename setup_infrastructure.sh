@@ -2,7 +2,6 @@
 # this is linux specific  
 # https://get.docker.com requires admin username and password and is destripution sensitive
 
-
 if ! [[ "$(command -v docker)" == *"docker"* ]]; then
   # install docker
     curl -fsSL https://get.docker.com | sh
